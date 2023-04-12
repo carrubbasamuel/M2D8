@@ -22,9 +22,25 @@ div.container{
     padding: 200px;
 }
 
-h1{
-    padding: 50px 50px 50px 0;
+
+
+div.container>img{
+    position: absolute;
+    top:10px;
+    width: 350px;
 }
+
+#title{
+    font-size: 57px;
+
+}
+
+#subtitle{
+    color: #198754;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
 
 div.container>button{
     width: 100px;
@@ -74,6 +90,10 @@ ul.list-group{
 i{
     font-size: 36px;
     color: black;
+}
+
+.colorI{
+    color: #198754;
 }
 
 div.notFound{
