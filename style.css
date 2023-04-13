@@ -4,7 +4,7 @@
     padding: 0;
 }
 
-
+/* Stile del div container */
 div.container{
     display: flex;
     flex-flow: column nowrap;
@@ -23,42 +23,37 @@ div.container{
 }
 
 
-
-div.container>img{
-    position: absolute;
-    top:10px;
-    width: 350px;
-}
-
+/* Stile del titolo e del sottotitolo */
 #title{
     font-size: 57px;
+    margin-bottom: 50px;
 
 }
 
 #subtitle{
+    position: absolute;
+    z-index: 2;
+    top: 170px;
     color: #198754;
     font-size: 24px;
     margin-bottom: 30px;
 }
 
 
+/* Stile bottone di ricerca */
 div.container>button{
     width: 100px;
     margin-top: 20px;
-}
-
-.btn{
     align-self: flex-end;
 }
 
 
+/* Stile per lo spinner. Il bottone di caricamento prima che vengano visualizzati i dati ottenuti dalla ricerca */
 .spinner-grow{
     align-self: center;
 }
   
-
 /* il @keyframe indica all'elemento bootstramp come si deve comportare nel tempo */
-
 @keyframes spinner-grow {
     0% {
         transform: scale(1);
@@ -74,17 +69,14 @@ div.container>button{
     }
 }
 
+
+/* Stile per la lista di elementi trovati dalla ricerca */
 ul.list-group{
     padding: 100px 0;
 }
 
-
-.restart{
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    z-index: 2;
-    
+li:hover{
+    cursor: pointer;
 }
 
 i{
@@ -92,10 +84,8 @@ i{
     color: black;
 }
 
-.colorI{
-    color: #198754;
-}
 
+/* Stile per il div nella casistica in cui la ricerca non ha prodotto risultati */
 div.notFound{
     align-self: center;
     padding: 200px;
@@ -104,22 +94,28 @@ div.notFound{
     align-items: center;
 }
 
-
 div.notFound>p{
     font-size: 26px;
     font-weight: bold;
 }
 
+
+/* stile del numero di ricerche trovate */
 span.count{
     position: absolute;
     right: 50px;
     bottom: 40px;
-    
     font-size: 26px;
     font-weight: bold;
     z-index: 2;
 }
 
-li:hover{
-    cursor: pointer;
+
+/* Stile del bottone per tornare indietro */
+.restart{
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    z-index: 2;
+    cursor: pointer;   
 }

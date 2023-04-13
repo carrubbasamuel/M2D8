@@ -108,8 +108,8 @@ function jobSearch(position, location) {
 }
 
 
-
-function displayJobs(job) {
+//Questa funzione si occupa di gestire tutto quello che è contenuto all'interno del div container.
+function displayJobs(job, restartContainer) {
   //Selezioniamo il div container, lo svuotiamo e aggiungiame dello stile differente per poi ospitare la nostra lista di risultati
   let divContainer = document.querySelector("div");
   divContainer.innerHTML = "";
@@ -118,13 +118,26 @@ function displayJobs(job) {
 
   //Creiamo il nuovo div che andrà a contenere la lista di risultati, il bottone per tornare indietro e il numero di ricerche ottenuto
   let newDiv = document.createElement("div");
-  let a = document.createElement("a");
-  a.href = "index.html";
-  a.classList.add("restart");
-  a.innerHTML = "<i class='fa-solid fa-arrow-left'></i>";
+  //Tasto per tornare indietro
+  let i = document.createElement("i");
+  i.classList.add("restart");
+  i.classList.add("fas");
+  i.classList.add("fa-arrow-left");
+  i.classList.add("restart");
+  //evento per tornare alla situazione iniziale. svuotiamo div conteiner e lo riempiamo con il parametro resetContainer che contiene la struttura HTML
+  //della situazione iniziale. Rimuoviamo la classe aggiunta inizialmente e richiamiamo dinuovo la nostra mainFunction per iniziare da capo.
+  i.addEventListener("click", ()=>{
+    divContainer.innerHTML = "";
+    divContainer.innerHTML = restartContainer;
+    divContainer.style = "";
+    mainFunction();
+  })
+  newDiv.appendChild(i);
+  //Numero di ricerche trovate
   let count = document.createElement("span");
   count.classList.add("count");
   count.innerText = "Found: " + job.count;
+  newDiv.appendChild(count);
 
 
   //Qui andiamo a creare la nostra lista di risultati grazie alle classi bootstramp verificando prima se la ricerca a prodotto risultati
@@ -143,32 +156,30 @@ function displayJobs(job) {
       ul.appendChild(li);
     }
     //Creata la nostra lista la andiamo a collegare al nostro div contenitore
-
     newDiv.appendChild(ul);
     divContainer.appendChild(newDiv);
-  }else{
-    //Se la ricerca non ha prodotto risultati aggiungiamo una classe al div creato inizialmente e colleghiamo tutto al div contenitore
 
+  }else{
+    //Se la ricerca non ha prodotto risultati aggiungiamo una classe al div creato inizialmente, aggiungiamo un icona con un testo  e colleghiamo tutto al div contenitore.
     newDiv.classList.add("notFound");
     let i = document.createElement("i");
-    i.innerHTML = "<i class='fa-solid fa-heart-crack'></i>";
-    let heart = i.querySelector("i");
-    heart.classList.add("colorI");
+    i.classList.add("fas");
+    i.classList.add("fa-solid");
+    i.classList.add("fa-heart-crack");
+    i.style.color = "#198754";
     let p =document.createElement("p");
     p.innerText = "Search not found!";
     newDiv.appendChild(i);
     newDiv.appendChild(p);
     divContainer.appendChild(newDiv);
   }
-  newDiv.appendChild(a);
-  newDiv.appendChild(count);
 }
 
 
 
 
 
-//Questa funzione crea grazie ad una classe bootstramp uno spinner che verrà visualizzato prima di caricare la lista di risultati
+//Questa funzione crea grazie ad una classe bootstramp uno spinner che verrà visualizzato prima di caricare i risultati della ricerca.
 function loadingJob(){
   let divContainer = document.querySelector("div");
   divContainer.innerHTML = "";
@@ -185,10 +196,11 @@ function loadingJob(){
 function action(){
   let position = document.getElementById("floatingPosition").value;
   let location = document.getElementById("floatingLocation").value;
-  loadingJob();
-  setTimeout(function() {
+  let restart = document.querySelector("div").innerHTML;//una copia della struttura HTML all'interno del div container,ci servirà in caso volessimo tornare indietro dopo una ricerca.
+  loadingJob();  
+  setTimeout(function() {                                         
     let job = jobSearch(position, location);
-    displayJobs(job);
+    displayJobs(job, restart);
   }, 2000);
 }
 
@@ -197,21 +209,18 @@ function action(){
 
 
 /*--------------- mainFunction ------------------*/
+//Funzione principale che tramite i listener sia sul bottone'SEARCH' che premendo il tasto invio richiama le altre funzioni.
 function mainFunction(){
   let button = document.querySelector("button");
-  //Aggiungiamo un evento al bottone che andrà a prendere il valore degli input e a richiamare gradualmente le fostre funzioni
   button.addEventListener("click", action);
-
 
   //raccogliamo tutti gli input in un insieme di nodi con querySelector
   let inputs = document.querySelectorAll("input");
-
   /* Tramite il forEach andiamo ad iterare l'insime di nodi e per ogni nodo richiamiamo una funzione di callback che aggiunge un listener
   che a sua volta chiamera una funzione di callback che verra esegutita se si preme("keypress") ed andrà a verificare se il tasto premuto corrisponde all'invio
   all'interno della condizione verifichiamo se l'indice su qui è stato attivato il listener corrisponde allo 0 quindi il primo
   tramite la funzione focus() andremo a selezionare l'altro input.
   se la condizione non viene soddisfatta richiamo la funzione active() */
-
   inputs.forEach((input ,i) => {
     input.addEventListener("keydown", (event)=>{
       if(event.key == "Enter"){
@@ -244,7 +253,7 @@ let animationTitle = anime({
   targets: title,
   translateY: [0, 10],
   opacity: [0, 1],
-  duration: 1000,
+  duration: 1500,
   easing: 'easeInCubic',
 });
 
@@ -252,7 +261,8 @@ let animationTitle = anime({
 let subtitle = document.getElementById("subtitle");
 let animationSubtitle = anime({
   targets: subtitle,
-  scale: [1.3,1],
+  scale: [2,1],
+  easing: "easeInElastic",
   duration: 1500,
 })
 
@@ -267,11 +277,10 @@ let animationLabel = anime({
 
 
 let itemAnimation = document.getElementsByClassName("animate");
-console.log(itemAnimation);
 let animationItem = anime({
   targets: itemAnimation,
   opacity:[-0.5 ,1],
-  duration: 6000,
+  duration: 8000,
 })
 
 
