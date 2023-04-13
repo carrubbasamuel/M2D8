@@ -133,12 +133,12 @@ function displayJobs(job, restartContainer) {
     mainFunction();
   })
   newDiv.appendChild(i);
+
   //Numero di ricerche trovate
   let count = document.createElement("span");
   count.classList.add("count");
   count.innerText = "Found: " + job.count;
   newDiv.appendChild(count);
-
 
   //Qui andiamo a creare la nostra lista di risultati grazie alle classi bootstramp verificando prima se la ricerca a prodotto risultati
   if(job.count != 0){
@@ -158,7 +158,6 @@ function displayJobs(job, restartContainer) {
     //Creata la nostra lista la andiamo a collegare al nostro div contenitore
     newDiv.appendChild(ul);
     divContainer.appendChild(newDiv);
-
   }else{
     //Se la ricerca non ha prodotto risultati aggiungiamo una classe al div creato inizialmente, aggiungiamo un icona con un testo  e colleghiamo tutto al div contenitore.
     newDiv.classList.add("notFound");
@@ -176,9 +175,6 @@ function displayJobs(job, restartContainer) {
 }
 
 
-
-
-
 //Questa funzione crea grazie ad una classe bootstramp uno spinner che verrà visualizzato prima di caricare i risultati della ricerca.
 function loadingJob(){
   let divContainer = document.querySelector("div");
@@ -188,8 +184,6 @@ function loadingJob(){
   spinner.classList.add("text-success");
   divContainer.appendChild(spinner);
 }
-
-
 
 
 //questa funzione richiama tutte le altre e si occupa di ricevere i parametri inseriti dall'utente
@@ -203,10 +197,6 @@ function action(){
     displayJobs(job, restart);
   }, 2000);
 }
-
-
-
-
 
 /*--------------- mainFunction ------------------*/
 //Funzione principale che tramite i listener sia sul bottone'SEARCH' che premendo il tasto invio richiama le altre funzioni.
@@ -242,10 +232,6 @@ function mainFunction(){
   } */
 }
 
-
-
-
-
 /*----------------- animazioni create grazie alla libreria Anime.js ---------------------*/
 
 let title = document.getElementById("title");
@@ -257,7 +243,6 @@ let animationTitle = anime({
   easing: 'easeInCubic',
 });
 
-
 let subtitle = document.getElementById("subtitle");
 let animationSubtitle = anime({
   targets: subtitle,
@@ -266,15 +251,12 @@ let animationSubtitle = anime({
   duration: 1500,
 })
 
-
-
 let label = document.getElementsByTagName("label");
 let animationLabel = anime({
   targets: label,
   opacity:[-0.5 ,1],
-  duration: 15000,
+  duration: 20000,
 })
-
 
 let itemAnimation = document.getElementsByClassName("animate");
 let animationItem = anime({
@@ -282,10 +264,6 @@ let animationItem = anime({
   opacity:[-0.5 ,1],
   duration: 8000,
 })
-
-
-
-
 
 
 
