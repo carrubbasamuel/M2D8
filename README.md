@@ -1,7 +1,7 @@
 # Carrubba-Samuel-TestM2
 Searching Job. 
 
-/*
+
 PARTE 1: 
 Oggi analizzeremo un problema molto comune: realizzare algoritmi di ricerca.
 Il tuo compito è creare una funzione che cercherà per posizione lavorativa E posizione geografica. Questi due valori verranno passati come parametri
