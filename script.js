@@ -104,7 +104,7 @@ function jobSearch(position, location) {
     }
 
   }
-  return { result, count };//il risultato sarà un oggetto con un array di oggetti e una variabile che contiene il numero di ricerche andate a buon fine
+  return { result, count };
 }
 
 
@@ -124,8 +124,6 @@ function displayJobs(job, restartContainer) {
   i.classList.add("fas");
   i.classList.add("fa-arrow-left");
   i.classList.add("restart");
-  //evento per tornare alla situazione iniziale. svuotiamo div conteiner e lo riempiamo con il parametro resetContainer che contiene la struttura HTML
-  //della situazione iniziale. Rimuoviamo la classe aggiunta inizialmente e richiamiamo dinuovo la nostra mainFunction per iniziare da capo.
   i.addEventListener("click", ()=>{
     divContainer.innerHTML = "";
     divContainer.innerHTML = restartContainer;
@@ -155,7 +153,6 @@ function displayJobs(job, restartContainer) {
       li.appendChild(span);
       ul.appendChild(li);
     }
-    //Creata la nostra lista la andiamo a collegare al nostro div contenitore
     newDiv.appendChild(ul);
     divContainer.appendChild(newDiv);
   }else{
@@ -199,18 +196,13 @@ function action(){
 }
 
 /*--------------- mainFunction ------------------*/
-//Funzione principale che tramite i listener sia sul bottone'SEARCH' che premendo il tasto invio richiama le altre funzioni.
+
 function mainFunction(){
   let button = document.querySelector("button");
   button.addEventListener("click", action);
 
   //raccogliamo tutti gli input in un insieme di nodi con querySelector
   let inputs = document.querySelectorAll("input");
-  /* Tramite il forEach andiamo ad iterare l'insime di nodi e per ogni nodo richiamiamo una funzione di callback che aggiunge un listener
-  che a sua volta chiamera una funzione di callback che verra esegutita se si preme("keypress") ed andrà a verificare se il tasto premuto corrisponde all'invio
-  all'interno della condizione verifichiamo se l'indice su qui è stato attivato il listener corrisponde allo 0 quindi il primo
-  tramite la funzione focus() andremo a selezionare l'altro input.
-  se la condizione non viene soddisfatta richiamo la funzione active() */
   inputs.forEach((input ,i) => {
     input.addEventListener("keydown", (event)=>{
       if(event.key == "Enter"){
@@ -220,16 +212,6 @@ function mainFunction(){
     })
 
   })
-  //Metodo con for
-  /* for(let i=0; i<inputs.length;i++){
-    let input = inputs[i];
-    input.addEventListener("keydown", (event)=>{
-      if(event.key === "Enter"){
-        if(i===0)inputs[i+1].focus();
-        else action();
-      }
-    })
-  } */
 }
 
 /*----------------- animazioni create grazie alla libreria Anime.js ---------------------*/
