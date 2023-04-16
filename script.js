@@ -201,6 +201,7 @@ function mainFunction(){
   button.addEventListener("click", action);
 
   //raccogliamo tutti gli input in un insieme di nodi con querySelector
+  //Se è il primo input e si preme va sul secondo altrimenti inizia la ricerca
   let inputs = document.querySelectorAll("input");
   inputs.forEach((input ,i) => {
     input.addEventListener("keydown", (event)=>{
