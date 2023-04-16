@@ -125,7 +125,6 @@ function displayJobs(job, restartContainer) {
   i.classList.add("fa-arrow-left");
   i.classList.add("restart");
   i.addEventListener("click", ()=>{
-    divContainer.innerHTML = "";
     divContainer.innerHTML = restartContainer;
     divContainer.style = "";
     mainFunction();

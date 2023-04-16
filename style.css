@@ -52,8 +52,7 @@ div.container>button{
 .spinner-grow{
     align-self: center;
 }
-  
-/* il @keyframe indica all'elemento bootstramp come si deve comportare nel tempo */
+
 @keyframes spinner-grow {
     0% {
         transform: scale(1);
