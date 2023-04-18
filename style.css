@@ -119,6 +119,7 @@ span.count{
     cursor: pointer;   
 }
 
+
 .form-control:focus{
     box-shadow: 0 0 12px 2px #198754;
 }
